@@ -12,12 +12,9 @@
 
 ## Tool
 
-- `dump(object: Table)` - format return table object.
+- `dump(object: table)` - format return table object.
 
 ## Command
 
 - `exec(cmd: array[string], stdout: stdio, stderr: stdio)` - execute a command.
   - `stdio`: `string enum: "inhert" | "piped" | "null"` - `default: inhert`
-- `execQuiet(cmd: array[string])` - execute a command with *quiet* mode.
-- `execSimple(cmd: string)` - execute a string command.
-

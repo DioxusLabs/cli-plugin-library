@@ -1,5 +1,5 @@
-if plugin_logger ~= nil then
-    return plugin_logger
+if PLUGIN_LOGGER ~= nil then
+    return PLUGIN_LOGGER
 else
     return {
         trace = function (info)
