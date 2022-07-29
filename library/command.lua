@@ -3,7 +3,7 @@ if PLUGIN_COMMAND ~= nil then
 else
     return {
         exec = function (cmd, stdout, stderr)
-            print("Mock Exec Command : " .. cmd)
+            print("Mock Exec Command")
         end,
     }
 end
