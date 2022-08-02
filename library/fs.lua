@@ -17,6 +17,9 @@ else
         create_dir = function (path, recursive)
             return true
         end,
+        remove_dir = function (path)
+            return true
+        end,
         file_get_content = function (path)
             return "File Content"
         end,

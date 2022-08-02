@@ -13,6 +13,13 @@ if PLUGIN_DOWNLOADER ~= nil then
     for key, value in pairs(PLUGIN_LOGGER) do
         downloader[key] = value
     end
+else
+    downloader = {
+        clone_repo = downloader.clone_repo,
+        download_file = function (url, path)
+            print("download from " .. url .. " to " .. path)
+        end
+    }
 end
 
 return downloader
