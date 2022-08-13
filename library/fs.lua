@@ -26,6 +26,9 @@ else
         file_set_content = function (path, content)
             return true
         end,
+        unzip_file = function (path, target)
+            return true
+        end
     }
 end
 
