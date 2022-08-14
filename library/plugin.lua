@@ -40,6 +40,24 @@ local api = {
         ---@type fun(url: string): string
         download_content = plugin_lib.network.get_content,
     },
+    fs = {
+        ---@type fun(path: string): boolean
+        exists = plugin_lib.fs.exists,
+        ---@type fun(path: string): boolean
+        is_dir = plugin_lib.fs.is_dir,
+        ---@type fun(path: string): boolean
+        is_file = plugin_lib.fs.is_file,
+        ---@type fun(path: string, recursive: boolean): boolean
+        create_dir = plugin_lib.fs.create_dir,
+        ---@type fun(path: string): boolean
+        remove_dir = plugin_lib.fs.remove_dir,
+        ---@type fun(path: string): string
+        file_get_content = plugin_lib.fs.file_get_content,
+        ---@type fun(path: string, content: string): boolean
+        file_set_content = plugin_lib.fs.file_set_content,
+        ---@type fun(path: string, target: string): boolean
+        unzip_file = plugin_lib.fs.unzip_file,
+    },
     os = {
         ---@alias platform
         --- | '"windows"'
@@ -47,7 +65,25 @@ local api = {
         --- | '"linux"'
         ---@type fun(): platform
         current_platform = plugin_lib.os.current_platform,
+    },
+    _manager = {
+        ---@type string | nil
+        name = nil,
+        ---@type string | nil
+        repository = nil,
+        ---@type string | nil
+        author = nil,
+        ---@type string | nil
+        version = nil
     }
 }
+
+---@param manager Manager
+function api:init(manager)
+    self._manager.name = manager.name
+    self._manager.repository = manager.repository
+    self._manager.author = manager.author
+    self._manager.version = manager.version
+end
 
 return api
