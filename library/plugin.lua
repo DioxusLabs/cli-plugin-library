@@ -1,16 +1,17 @@
 local function dump(object)
     if type(object) == 'table' then
         local s = '{ '
-        for k,v in pairs(object) do
-           if type(k) ~= 'number' then k = '"'..k..'"' end
-           s = s .. '['..k..'] = ' .. dump(v) .. ','
+        for k, v in pairs(object) do
+            if type(k) ~= 'number' then k = '"' .. k .. '"' end
+            s = s .. '[' .. k .. '] = ' .. dump(v) .. ','
         end
         return s .. '} '
-     else
+    else
         return tostring(object)
-     end
+    end
 end
 
+---@class PluginApi
 local api = {
     log = {
         ---@type fun(info: string)
@@ -33,12 +34,12 @@ local api = {
         exec = plugin_lib.command.exec,
     },
     network = {
-        ---@type fun(url: string, path: string): boolean
-        clone_repo = plugin_lib.network.clone_repo,
+        -- ---@type fun(url: string, path: string): boolean
+        -- clone_repo = plugin_lib.network.clone_repo,
         ---@type fun(url: string, path: string): boolean
         download_file = plugin_lib.network.download_file,
-        ---@type fun(url: string): string
-        download_content = plugin_lib.network.get_content,
+        -- ---@type fun(url: string): string
+        -- download_content = plugin_lib.network.get_content,
     },
     fs = {
         ---@type fun(path: string): boolean
@@ -66,7 +67,15 @@ local api = {
         ---@type fun(): platform
         current_platform = plugin_lib.os.current_platform,
     },
-    _manager = {
+    path = {
+        ---@type fun(path: string, extra: string): string
+        join = plugin_lib.path.join,
+    },
+    dirs = {},
+}
+
+do
+    local private_value = {
         ---@type string | nil
         name = nil,
         ---@type string | nil
@@ -74,16 +83,46 @@ local api = {
         ---@type string | nil
         author = nil,
         ---@type string | nil
-        version = nil
+        version = nil,
+        ---@type string
+        dir_name = current_dir_name,
     }
-}
 
----@param manager Manager
-function api:init(manager)
-    self._manager.name = manager.name
-    self._manager.repository = manager.repository
-    self._manager.author = manager.author
-    self._manager.version = manager.version
+    ---@param manager Manager
+    function api.init(manager)
+        private_value.name = manager.name
+        private_value.repository = manager.repository
+        private_value.author = manager.author
+        private_value.version = manager.version
+    end
+
+    ---@return string
+    function api.dirs.plugin_dir()
+        ---@type string
+        local root_dir = plugin_lib.dirs.plugins_dir()
+        return api.path.join(root_dir, current_dir_name)
+    end
+
+    ---@return string
+    function api.dirs.bin_dir()
+        local root_dir = api.dirs.plugin_dir()
+        return api.path.join(root_dir, "bin")
+    end
+
+    ---@return string
+    function api.dirs.temp_dir()
+        local root_dir = api.dirs.plugin_dir()
+        return api.path.join(root_dir, "temp")
+    end
+
+    ---@param url string
+    ---@param path string
+    ---@return boolean
+    function api.network.clone_repo(url, path)
+        api.command.exec({ "git", "clone", url, path }, "null", "null")
+        return api.fs.exists(path) and api.fs.is_dir(path)
+    end
+
 end
 
 return api
