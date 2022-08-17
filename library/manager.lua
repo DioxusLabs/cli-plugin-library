@@ -6,21 +6,38 @@
 ---@field author string             Plugin author info
 --- |
 ---@field on_init function          Plugin *first time* load event
----@field on_load function          Plugin load event
----@field on_build_start function   CLI start to build event
----@field on_build_finish function     CLI end to build event
-
----@type Manager
 local manager = {
+
     name = "<unknwon>",
     repository = "",
     version = "0.1.0",
     author = "YuKun Liu <mrxzx.info@gmail.com>",
 
-    on_init = function () end,
-    on_load = function () end,
-    on_build_start = function () end,
-    on_build_finish = function () end,
+    on_init = function() end,
+
+    ---@class BuildEvent
+    ---@field on_start function | nil
+    ---@field on_finish function | nil
+    build = {
+        on_start = nil,
+        on_finish = nil,
+    },
+
+
+    ---@class ServeEvent
+    ---@field interval_time integer
+    ---@field on_start function | nil
+    ---@field on_rebuild function | nil
+    ---@field on_interval function | nil
+    ---@field on_shutdown function | nil
+    serve = {
+        interval_time = 0,
+        on_start = nil,
+        on_rebuild = nil,
+        on_interval = nil,
+        on_shutdown = nil,
+    }
+
 }
 
 return manager
