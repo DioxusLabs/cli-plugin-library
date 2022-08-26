@@ -26,7 +26,7 @@ local manager = {
 
     ---@class ServeEvent
     ---@field interval_time integer
-    ---@field on_start function | nil
+    ---@field on_start fun(info: BuildStartInfo) | nil
     ---@field on_rebuild function | nil
     ---@field on_interval function | nil
     ---@field on_shutdown function | nil

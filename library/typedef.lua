@@ -1,0 +1,5 @@
+---@class BuildInfo
+---@field name string
+---@field platform platform
+---@field out_dir string
+---@field asset_dir string

@@ -72,6 +72,9 @@ local api = {
         join = plugin_lib.path.join,
     },
     dirs = {},
+    tool = {
+        dump = dump,
+    }
 }
 
 do
