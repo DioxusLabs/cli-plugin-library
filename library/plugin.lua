@@ -1,3 +1,4 @@
+-- dump function
 local function dump(object)
     if type(object) == 'table' then
         local s = '{ '
