@@ -10,3 +10,6 @@
 ---@class ServeRebuildInfo
 ---@field timestamp number
 ---@field changed_files string[]
+
+---@class ServeShutdownInfo
+---@field timestamp number
