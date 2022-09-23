@@ -43,12 +43,6 @@ local api = {
         -- download_content = plugin_lib.network.get_content,
     },
     fs = {
-        ---@type fun(path: string): boolean
-        exists = plugin_lib.fs.exists,
-        ---@type fun(path: string): boolean
-        is_dir = plugin_lib.fs.is_dir,
-        ---@type fun(path: string): boolean
-        is_file = plugin_lib.fs.is_file,
         ---@type fun(path: string, recursive: boolean): boolean
         create_dir = plugin_lib.fs.create_dir,
         ---@type fun(path: string): boolean
@@ -71,6 +65,12 @@ local api = {
     path = {
         ---@type fun(path: string, extra: string): string
         join = plugin_lib.path.join,
+        ---@type fun(path: string): boolean
+        exists = plugin_lib.fs.exists,
+        ---@type fun(path: string): boolean
+        is_dir = plugin_lib.fs.is_dir,
+        ---@type fun(path: string): boolean
+        is_file = plugin_lib.fs.is_file,
     },
     dirs = {},
     tool = {
