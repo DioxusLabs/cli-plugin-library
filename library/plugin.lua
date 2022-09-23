@@ -66,11 +66,11 @@ local api = {
         ---@type fun(path: string, extra: string): string
         join = plugin_lib.path.join,
         ---@type fun(path: string): boolean
-        exists = plugin_lib.fs.exists,
+        exists = plugin_lib.path.exists,
         ---@type fun(path: string): boolean
-        is_dir = plugin_lib.fs.is_dir,
+        is_dir = plugin_lib.path.is_dir,
         ---@type fun(path: string): boolean
-        is_file = plugin_lib.fs.is_file,
+        is_file = plugin_lib.path.is_file,
     },
     dirs = {},
     tool = {
