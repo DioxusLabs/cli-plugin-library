@@ -53,6 +53,8 @@ local api = {
         file_set_content = plugin_lib.fs.file_set_content,
         ---@type fun(path: string, target: string): boolean
         unzip_file = plugin_lib.fs.unzip_file,
+        ---@type fun(path: string, target: string): boolean
+        untar_gz_file = plugin_lib.untar_gz_file,
     },
     os = {
         ---@alias platform
