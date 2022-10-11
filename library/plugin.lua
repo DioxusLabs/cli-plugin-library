@@ -102,6 +102,12 @@ do
         private_value.version = manager.version
     end
 
+    ---@return table
+    function api.get_config()
+        local all_config = config_info
+        return all_config[private_value.name]
+    end
+
     ---@return string
     function api.dirs.plugin_dir()
         ---@type string
