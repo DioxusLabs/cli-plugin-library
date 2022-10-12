@@ -1,13 +1,13 @@
 ---@class Manager
 ---@source https://github.com/DioxusLabs/cli-plugin-library
----@field name string               Plugin name
----@field repository string         Plugin git repository
----@field version string            Plugin version info
----@field author string             Plugin author info
+---@field name string                       Plugin name
+---@field repository string                 Plugin git repository
+---@field version string                    Plugin version info
+---@field author string                     Plugin author info
 --- |
----@field dir_name string           Plugin current dir name (private)
+---@field plugin_dir string                 Plugin current dir name (private)
 --- |
----@field on_init function          Plugin *first time* load event
+---@field on_init fun(plugin_dir: string, loader: boolean)   Plugin *first time* load event
 local manager = {
 
     name = "<unknwon>",

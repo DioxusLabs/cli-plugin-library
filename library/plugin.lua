@@ -91,7 +91,7 @@ do
         ---@type string | nil
         version = nil,
         ---@type string | nil
-        dir_name = nil,
+        plugin_dir = nil,
     }
 
     ---@param manager Manager
@@ -100,7 +100,7 @@ do
         private_value.repository = manager.repository
         private_value.author = manager.author
         private_value.version = manager.version
-        private_value.dir_name = manager.dir_name
+        private_value.plugin_dir = manager.plugin_dir
     end
 
     ---@return table
@@ -112,8 +112,9 @@ do
     ---@return string
     function api.dirs.plugin_dir()
         ---@type string
-        local root_dir = plugin_lib.dirs.plugins_dir()
-        return api.path.join(root_dir, private_value.dir_name)
+        -- local root_dir = plugin_lib.dirs.plugins_dir()
+        -- return api.path.join(root_dir, private_value.dir_name)
+        return private_value.plugin_dir
     end
 
     ---@return string
