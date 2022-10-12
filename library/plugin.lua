@@ -54,7 +54,7 @@ local api = {
         ---@type fun(path: string, target: string): boolean
         unzip_file = plugin_lib.fs.unzip_file,
         ---@type fun(path: string, target: string): boolean
-        untar_gz_file = plugin_lib.untar_gz_file,
+        untar_gz_file = plugin_lib.fs.untar_gz_file,
     },
     os = {
         ---@alias platform
@@ -92,6 +92,8 @@ do
         version = nil,
         ---@type string | nil
         plugin_dir = nil,
+        ---@type boolean
+        from_loader = false,
     }
 
     ---@param manager Manager
@@ -100,7 +102,8 @@ do
         private_value.repository = manager.repository
         private_value.author = manager.author
         private_value.version = manager.version
-        private_value.plugin_dir = manager.plugin_dir
+        private_value.plugin_dir = _temp_plugin_dir
+        private_value.from_loader = _temp_from_loader
     end
 
     ---@return table

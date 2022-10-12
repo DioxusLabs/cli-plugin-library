@@ -5,9 +5,7 @@
 ---@field version string                    Plugin version info
 ---@field author string                     Plugin author info
 --- |
----@field plugin_dir string                 Plugin current dir name (private)
---- |
----@field on_init fun(plugin_dir: string, loader: boolean)   Plugin *first time* load event
+---@field on_init function                  Plugin *first time* load event
 local manager = {
 
     name = "<unknwon>",
@@ -16,6 +14,14 @@ local manager = {
     author = "YuKun Liu <mrxzx.info@gmail.com>",
 
     on_init = function() end,
+
+    ---@class InnerField
+    ---@field plugin_dir string
+    ---@field from_loader boolean
+    inner = {
+        plugin_dir = "",
+        from_loader = false,
+    },
 
     ---@class BuildEvent
     ---@field on_start function | nil
