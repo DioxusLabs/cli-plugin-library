@@ -5,6 +5,8 @@
 ---@field version string            Plugin version info
 ---@field author string             Plugin author info
 --- |
+---@field dir_name string           Plugin current dir name (private)
+--- |
 ---@field on_init function          Plugin *first time* load event
 local manager = {
 
