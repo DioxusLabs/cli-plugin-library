@@ -35,12 +35,8 @@ local api = {
         exec = plugin_lib.command.exec,
     },
     network = {
-        -- ---@type fun(url: string, path: string): boolean
-        -- clone_repo = plugin_lib.network.clone_repo,
         ---@type fun(url: string, path: string): boolean
         download_file = plugin_lib.network.download_file,
-        -- ---@type fun(url: string): string
-        -- download_content = plugin_lib.network.get_content,
     },
     fs = {
         ---@type fun(path: string, recursive: boolean): boolean
@@ -65,7 +61,7 @@ local api = {
         current_platform = plugin_lib.os.current_platform,
     },
     path = {
-        ---@type fun(path: string, extra: string): string
+        ---@type fun(...: string): string
         join = plugin_lib.path.join,
         ---@type fun(path: string): boolean
         exists = plugin_lib.path.exists,
@@ -109,7 +105,7 @@ do
     ---@return table
     function api.get_config()
         local all_config = config_info
-        return all_config[private_value.name]
+        return all_config.config_info[private_value.name]
     end
 
     ---@return string
