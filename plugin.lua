@@ -12,19 +12,31 @@ local function dump(object)
     end
 end
 
+local plugin_dir_name = plugin_lib.path.file_name(_temp_plugin_dir)
+
 ---@class PluginApi
 local api = {
     log = {
         ---@type fun(info: string)
-        trace = plugin_lib.log.trace,
+        trace = function (info)
+            plugin_lib.log.trace("[" .. plugin_dir_name .. "] " .. info)
+        end,
         ---@type fun(info: string)
-        debug = plugin_lib.log.debug,
+        debug = function (info)
+            plugin_lib.log.debug("[" .. plugin_dir_name .. "] " .. info)
+        end,
         ---@type fun(info: string)
-        info = plugin_lib.log.info,
+        info = function (info)
+            plugin_lib.log.info("[" .. plugin_dir_name .. "] " .. info)
+        end,
         ---@type fun(info: string)
-        warn = plugin_lib.log.warn,
+        warn = function (info)
+            plugin_lib.log.warn("[" .. plugin_dir_name .. "] " .. info)
+        end,
         ---@type fun(info: string)
-        error = plugin_lib.log.error,
+        error = function (info)
+            plugin_lib.log.error("[" .. plugin_dir_name .. "] " .. info)
+        end,
     },
     command = {
         ---@alias stdio
@@ -48,6 +60,8 @@ local api = {
         ---@type fun(path: string, content: string): boolean
         file_set_content = plugin_lib.fs.file_set_content,
         ---@type fun(path: string, target: string): boolean
+        move_file = plugin_lib.fs.move_file,
+        ---@type fun(path: string, target: string): boolean
         unzip_file = plugin_lib.fs.unzip_file,
         ---@type fun(path: string, target: string): boolean
         untar_gz_file = plugin_lib.fs.untar_gz_file,
@@ -69,6 +83,8 @@ local api = {
         is_dir = plugin_lib.path.is_dir,
         ---@type fun(path: string): boolean
         is_file = plugin_lib.path.is_file,
+        ---@type fun(path: string): string
+        file_name = plugin_lib.path.file_name,
     },
     dirs = {},
     tool = {
@@ -88,8 +104,6 @@ do
         version = nil,
         ---@type string | nil
         plugin_dir = nil,
-        ---@type boolean
-        from_loader = false,
     }
 
     ---@param manager Manager
@@ -99,7 +113,6 @@ do
         private_value.author = manager.author
         private_value.version = manager.version
         private_value.plugin_dir = _temp_plugin_dir
-        private_value.from_loader = _temp_from_loader
     end
 
     ---@return table
@@ -111,8 +124,6 @@ do
     ---@return string
     function api.dirs.plugin_dir()
         ---@type string
-        -- local root_dir = plugin_lib.dirs.plugins_dir()
-        -- return api.path.join(root_dir, private_value.dir_name)
         return private_value.plugin_dir
     end
 
