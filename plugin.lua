@@ -12,29 +12,32 @@ local function dump(object)
     end
 end
 
-local plugin_dir_name = plugin_lib.path.file_name(_temp_plugin_dir)
-
 ---@class PluginApi
 local api = {
     log = {
         ---@type fun(info: string)
         trace = function (info)
+            local plugin_dir_name = plugin_lib.path.file_name(_temp_plugin_dir)
             plugin_lib.log.trace("[" .. plugin_dir_name .. "] " .. info)
         end,
         ---@type fun(info: string)
         debug = function (info)
+            local plugin_dir_name = plugin_lib.path.file_name(_temp_plugin_dir)
             plugin_lib.log.debug("[" .. plugin_dir_name .. "] " .. info)
         end,
         ---@type fun(info: string)
         info = function (info)
+            local plugin_dir_name = plugin_lib.path.file_name(_temp_plugin_dir)
             plugin_lib.log.info("[" .. plugin_dir_name .. "] " .. info)
         end,
         ---@type fun(info: string)
         warn = function (info)
+            local plugin_dir_name = plugin_lib.path.file_name(_temp_plugin_dir)
             plugin_lib.log.warn("[" .. plugin_dir_name .. "] " .. info)
         end,
         ---@type fun(info: string)
         error = function (info)
+            local plugin_dir_name = plugin_lib.path.file_name(_temp_plugin_dir)
             plugin_lib.log.error("[" .. plugin_dir_name .. "] " .. info)
         end,
     },
