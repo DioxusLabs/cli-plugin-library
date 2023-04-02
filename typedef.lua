@@ -6,6 +6,7 @@
 
 ---@class ServeStartInfo
 ---@field name string
+---@field timestamp number
 
 ---@class ServeRebuildInfo
 ---@field timestamp number
