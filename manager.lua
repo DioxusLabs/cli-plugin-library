@@ -20,7 +20,6 @@ local manager = {
     ---@field from_loader boolean
     inner = {
         plugin_dir = "",
-        from_loader = false,
     },
 
     ---@class BuildEvent

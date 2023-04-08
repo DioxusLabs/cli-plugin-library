@@ -62,6 +62,8 @@ local api = {
         file_get_content = plugin_lib.fs.file_get_content,
         ---@type fun(path: string, content: string): boolean
         file_set_content = plugin_lib.fs.file_set_content,
+        ---@type fun(path: string): boolean
+        remove_file = plugin_dir.fs.remove_file,
         ---@type fun(path: string, target: string): boolean
         move_file = plugin_lib.fs.move_file,
         ---@type fun(path: string, target: string): boolean
@@ -89,8 +91,12 @@ local api = {
         ---@type fun(path: string): string
         file_name = plugin_lib.path.file_name,
     },
-    dirs = {},
+    dirs = {
+        ---@type fun(): string
+        crate_dir = plugin_lib.dirs.crate_dir,
+    },
     tool = {
+        ---@type fun(object: any): string
         dump = dump,
     }
 }
