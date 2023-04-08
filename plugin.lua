@@ -63,7 +63,7 @@ local api = {
         ---@type fun(path: string, content: string): boolean
         file_set_content = plugin_lib.fs.file_set_content,
         ---@type fun(path: string): boolean
-        remove_file = plugin_dir.fs.remove_file,
+        remove_file = plugin_lib.fs.remove_file,
         ---@type fun(path: string, target: string): boolean
         move_file = plugin_lib.fs.move_file,
         ---@type fun(path: string, target: string): boolean
