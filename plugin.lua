@@ -1,5 +1,5 @@
--- dump function
-local function dump(object)
+-- This function can convert object (list, table) to string
+local function object_to_string(object)
     if type(object) == 'table' then
         local s = '{ '
         for k, v in pairs(object) do
@@ -97,7 +97,7 @@ local api = {
     },
     tool = {
         ---@type fun(object: any): string
-        dump = dump,
+        object_to_string = object_to_string,
     }
 }
 
