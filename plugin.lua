@@ -94,6 +94,8 @@ local api = {
     dirs = {
         ---@type fun(): string
         crate_dir = plugin_lib.dirs.crate_dir,
+        ---@type fun(): string
+        plugin_dir = plugin_lib.dirs.plugin_dir,
     },
     tool = {
         ---@type fun(object: any): string
