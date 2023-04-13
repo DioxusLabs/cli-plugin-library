@@ -98,7 +98,8 @@ local api = {
     tool = {
         ---@type fun(object: any): string
         object_to_string = object_to_string,
-    }
+    },
+    config = {},
 }
 
 do
@@ -124,10 +125,18 @@ do
         private_value.plugin_dir = _temp_plugin_dir
     end
 
-    ---@return table
-    function api.get_config()
-        local all_config = config_info
-        return all_config.config_info[private_value.name]
+    ---@return DioxusConfig
+    function api.config.dioxus_toml()
+        return config_info
+    end
+
+    ---@return table|nil
+    function api.config.plugin_config()
+        local config = api.config.dioxus_toml()
+        if private_value.name == nil then
+        	return nil
+        end
+        return config.plugin[private_value.name]
     end
 
     ---@return string
