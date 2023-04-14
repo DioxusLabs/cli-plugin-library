@@ -39,15 +39,15 @@
 ---@field base_path string | nil
 
 ---@class WebWatcherConfig
----@field watch_path <string>[]
+---@field watch_path string[]
 ---@field reload_html boolean | nil
 ---@field index_on_404 boolean | nil
 
 ---@class WebResourceConfig
 ---@field dev WebDevResourceConfig
----@field style <string>[]
----@field script <string>[]
+---@field style string[]
+---@field script string[]
 
 ---@class WebDevResourceConfig
----@field style <string>[]
----@field script <string>[]
+---@field style string[]
+---@field script string[]
