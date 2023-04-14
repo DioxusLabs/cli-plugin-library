@@ -127,7 +127,7 @@ do
 
     ---@return DioxusConfig
     function api.config.dioxus_toml()
-        return config_info
+        return plugin_config
     end
 
     ---@return table|nil
