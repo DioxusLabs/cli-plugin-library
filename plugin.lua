@@ -53,6 +53,12 @@ local api = {
         ---@type fun(url: string, path: string): boolean
         download_file = plugin_lib.network.download_file,
     },
+    json = {
+        ---@type fun(value: any): string
+        encode = plugin_lib.json.encode,
+        ---@type fun(value: string): any
+        decode = plugin_lib.json.decode,
+    },
     fs = {
         ---@type fun(path: string, recursive: boolean): boolean
         create_dir = plugin_lib.fs.create_dir,
