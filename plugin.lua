@@ -73,6 +73,8 @@ local api = {
         ---@type fun(path: string, target: string): boolean
         move_file = plugin_lib.fs.move_file,
         ---@type fun(path: string, target: string): boolean
+        copy_file = plugin_lib.fs.copy_file,
+        ---@type fun(path: string, target: string): boolean
         unzip_file = plugin_lib.fs.unzip_file,
         ---@type fun(path: string, target: string): boolean
         untar_gz_file = plugin_lib.fs.untar_gz_file,
