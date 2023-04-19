@@ -4,7 +4,7 @@ local function object_to_string(object)
         local s = '{ '
         for k, v in pairs(object) do
             if type(k) ~= 'number' then k = '"' .. k .. '"' end
-            s = s .. '[' .. k .. '] = ' .. dump(v) .. ','
+            s = s .. '[' .. k .. '] = ' .. object_to_string(v) .. ','
         end
         return s .. '} '
     else
@@ -70,6 +70,8 @@ local api = {
         unzip_file = plugin_lib.fs.unzip_file,
         ---@type fun(path: string, target: string): boolean
         untar_gz_file = plugin_lib.fs.untar_gz_file,
+        ---@type fun(path: string): string[]
+        read_dir = plugin_lib.fs.read_dir,
     },
     os = {
         ---@alias platform
